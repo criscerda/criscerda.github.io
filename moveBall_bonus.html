@@ -1,0 +1,81 @@
+<div id="space" style="width:600px;height:600px;background:#f9f9f9">
+
+<div id="ball" style="
+  z-index:15;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background:green"></div>
+  <div id="ball2" style="
+  z-index:10;
+  position:absolute;
+  left:100px;
+  top:100px;
+  width:400px;
+  height:400px;
+  border-radius:50%;
+  background:red"></div>
+  </div>
+  <div style="width:600;text-align:center;font-size:30px;">#wannaplay</div>
+<script>
+var velocityX = 70;
+var velocityY = 70;
+var positionX = 0;
+var positionY = 0;
+var reverse = false;
+var ball = document.getElementById("ball");
+var ball2 = document.getElementById("ball2");
+var space = document.getElementById("space");
+
+//write a function that can change the position of the html element "ball"
+function moveBall() {
+  // two x-axis coordinates
+  var Xmin = 0;
+  var Xmax = 600;
+
+  // two y-axis coordinates
+  var Ymin = 0;
+  var Ymax = 600;
+
+  if (reverse) {
+    positionX = positionX - velocityX;
+    positionY = positionY - velocityY;
+    ball.style.left = positionX + "px";
+    ball.style.top = positionY + "px";
+    ball.style.background = "red";
+    ball.style.width = 50;
+    ball.style.height = 50;
+    ball2.style.background = "black";
+    ball2.style.width = 200;
+    ball2.style.height = 300;
+    space.style.background = "#f2f2f2";
+  } else {
+    positionX = positionX + velocityX;
+    positionY = positionY + velocityY;
+    ball.style.left = positionX + "px";
+    ball.style.background = "orange";
+    ball.style.width = 200;
+    ball.style.height = 200;
+    ball.style.top = positionY + "px";
+    ball2.style.background = "blue";
+    ball2.style.width = 380;
+    ball2.style.height = 400;
+    space.style.background = "#ADD8E6";
+  }
+
+  if (
+    positionX > Xmax ||
+    positionX === Xmin ||
+    positionY > Ymax ||
+    positionY === Ymin
+  ) {
+    reverse = !reverse;
+  }
+}
+
+setInterval(moveBall, 100);
+
+</script>
